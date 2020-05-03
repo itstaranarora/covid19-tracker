@@ -2,7 +2,7 @@
   "name": "cronastats",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://itstaranarora.github.io/covid19-updates",
+  "homepage": "http://itstaranarora.github.io/covid19-tracker",
   "dependencies": {
     "@material-ui/core": "^4.9.12",
     "@testing-library/jest-dom": "^4.2.4",
