@@ -1,4 +1,10 @@
-.formControl {
-    width: 30%;
-    margin-bottom: 30px !important;
+.picker {
+    flex: 0.8;
+  }
+  
+  
+@media (min-width: 955px) {
+    .picker {
+        flex: 0.34
+    }
 }

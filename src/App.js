@@ -2,7 +2,6 @@ import React from 'react';
 import { Cards, Chart, CountryPicker } from './components';
 import styles from './App.module.css';
 import { fetchData } from './api';
-import covid19img from './images/image.png';
 import "typeface-roboto";
 
 class App extends React.Component {
@@ -12,13 +11,29 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const data = await fetchData();
-    this.setState({ data: data });
+    this.setFetchedData();
   }
 
   handleCountryChange = async (country) => {
-    const fetchedData = await fetchData(country);
-    this.setState({ data: fetchedData, country });
+    this.setFetchedData(country);
+  }
+
+  setFetchedData = async (country) => {
+    const fetchedData = await fetchData(country || "")
+
+    this.setState({
+      data: fetchedData,
+      country
+    })
+  }
+
+  // async componentDidMount() {
+  //   const data = await fetchData();
+  //   this.setState({ data: data });
+  // }
+
+  handleCountryChange = async (country) => {
+    this.setFetchedData(country);
   }
 
   render() {
@@ -26,16 +41,23 @@ class App extends React.Component {
 
     return (
       <div className={styles.container}>
-        <img className={styles.image} src={covid19img} alt="Covid-19 Logo" />
+        <header className={styles.header} > 
+          <h1>COVID-19 Tracker</h1>
+          <p>Last Update on {" "}
+            <span>
+              {new Date(data.lastUpdate).toDateString()}
+            </span>
+          </p>
+        </header>
         <Cards data={data} />
-        <CountryPicker handleCountryChange={this.handleCountryChange} />
-        <Chart data={data} country={country} />
-        <div className={styles.footer}>
-          <p>Made with</p>
-          <span role='img' aria-label="sheep" >❤️ </span>
-          <p>by</p>
-          <a href="https://github.com/itstaranarora">@itstaranarora</a>
+        <div className={styles.picker}> 
+          <h2>Cases</h2>
+          <CountryPicker 
+            country={country} 
+            handleCountryChange={this.handleCountryChange} 
+          />
         </div>
+        <Chart data={data} country={country} />
       </div>
     );
   }

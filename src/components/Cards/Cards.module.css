@@ -1,24 +1,62 @@
 .container {
-  margin: 50px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .card {
-  margin: 0 2% !important;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  padding: 18px 22px 22px;
+  min-width: 100%;
+  margin: 18px 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: white;
+  background-clip: padding-box;
+  transition: 0.1s;
+}
+
+
+@media (min-width: 955px) {
+  .card {
+    min-width: 200px;
+    margin: 0 8px;
+  }
+}
+
+.card:first-child,
+.card:last-child {
+  margin: 0;
+}
+
+.cardTitle {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+}
+
+.cardValue {
+  font-size: 2rem;
+}
+
+.cardIcon {
+  margin-bottom: 12%;
 }
 
 .infected {
-  border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+  background-color: var(--lightYellow);
+  color: var(--yellow);
 }
 
 .recovered {
-  border-bottom: 10px solid rgba(0, 255, 0, 0.5);
-}
-.deaths {
-  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+  background-color: var(--lightGreen);
+  color: var(--green);
 }
 
-@media (max-width: 770px) {
-  .card {
-    margin: 2% 0 !important;
-  }
+.deaths {
+  background-color: var(--lightRed);
+  color: var(--red);
 }
